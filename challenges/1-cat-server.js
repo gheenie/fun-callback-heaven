@@ -7,20 +7,22 @@ function checkServerStatus(callback) {
 function fetchBannerContent(callback) {
   request('/banner', (err, response) => {
     if (err) callback(err);
-
-    const updatedBanner = JSON.parse(JSON.stringify(response));
-    updatedBanner.copyrightYear = 2023;
-    callback(null, updatedBanner);
+    else {
+      const updatedBanner = JSON.parse(JSON.stringify(response));
+      updatedBanner.copyrightYear = 2023;
+      callback(null, updatedBanner);
+    }
   });
 }
 
 function fetchAllOwners(callback) {
   request('/owners', (err, response) => {
     if (err) callback(err);
-
-    const responseCopy = JSON.parse(JSON.stringify(response));
-    const updatedOwners = responseCopy.map(owner => owner.toLowerCase());
-    callback(null, updatedOwners);
+    else {
+      const responseCopy = JSON.parse(JSON.stringify(response));
+      const updatedOwners = responseCopy.map(owner => owner.toLowerCase());
+      callback(null, updatedOwners);
+    }
   });
 }
 
@@ -38,20 +40,23 @@ function fetchCatsByOwner(owner, callback) {
 function fetchCatPics(catNames, callback) {
   if (catNames.length === 0) {
     callback(null);
-  }
-  const catPics = [];
-  catNames.forEach(catName => {
-    request(`/pics/${catName}`, (err, response) => {
-      if (err) {
-        catPics.push('placeholder.jpg');
-      } else {
-        catPics.push(response);
-      }
-      if (catNames.length === catPics.length) {
-        callback(null, catPics);
-      }
+  } else {
+    const catPics = [];
+
+    catNames.forEach(catName => {
+      request(`/pics/${catName}`, (err, response) => {
+        if (err) {
+          catPics.push('placeholder.jpg');
+        } else {
+          catPics.push(response);
+        }
+        
+        if (catNames.length === catPics.length) {
+          callback(null, catPics);
+        }
+      });
     });
-  });
+  }
 }
 
 // this function should take an array of strings (names of cat pics) and a callback function
