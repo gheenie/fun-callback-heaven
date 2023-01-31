@@ -1,8 +1,18 @@
 const request = require('../utils/server');
 
-function checkServerStatus() {}
+function checkServerStatus(callback) {
+  request('/status', callback);
+}
 
-function fetchBannerContent() {}
+function fetchBannerContent(callback) {
+  request('/banner', (err, response) => {
+    if (err) callback(err);
+    
+    const updatedBanner = JSON.parse( JSON.stringify(response) );
+    updatedBanner.copyrightYear = 2023;
+    callback(null, updatedBanner);
+  });
+}
 
 function fetchAllOwners() {}
 
