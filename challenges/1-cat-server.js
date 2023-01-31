@@ -26,11 +26,9 @@ function fetchAllOwners(callback) {
 
 function fetchCatsByOwner(owner, callback) {
   request(`/owners/${owner}/cats`, (err, response) => {
-    console.log(err);
     if (err) {
       callback(err);
     }
-    // if (err) console.log(err);
     else {
       const cats = JSON.parse(JSON.stringify(response));
       callback(null, cats);
@@ -45,7 +43,6 @@ function fetchCatPics(catNames, callback) {
   const catPics = [];
   catNames.forEach(catName => {
     request(`/pics/${catName}`, (err, response) => {
-      console.log(response);
       if (err) {
         catPics.push('placeholder.jpg');
       } else {
@@ -67,7 +64,35 @@ function fetchCatPics(catNames, callback) {
 
 // Finish;
 
-function fetchAllCats() {}
+function fetchAllCats(callback) {
+  fetchAllOwners( (err, updatedOwners) => {
+    if (err) {
+      callback(err);
+    } else {
+      const catsForAllOwners = [];
+      let count = 0;
+      
+      updatedOwners.forEach( (owner) => fetchCatsByOwner( owner, (err, cats) => {
+        if (err) {
+          callback(err);
+        } else {
+          cats.forEach( cat => catsForAllOwners.push(cat) );
+        }
+
+        count++;
+
+        if (updatedOwners.length === count) {
+          callback( null, catsForAllOwners.sort() );
+        }
+      } ) );
+    }
+  } );
+}
+
+/*    this function should take a callback function as its only argument
+    this function should make use of both fetchAllOwners and fetchCatsByOwner in order to retrieve an array of all the cats from the server
+    be mindful of the casing of your requests! fetchCatsByOwner only works with lowercase owner names
+    you must finally pass the array of all those adorable cats to the callback function, sorted in alphabetical order */
 
 function fetchOwnersWithCats() {}
 
