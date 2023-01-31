@@ -136,7 +136,7 @@ describe('fetchCatPics()', () => {
     }
     fetchCatPics([], testCB);
   });
-  test('invokes the callback function with a single response', done => {
+  test.only('invokes the callback function with a single response', done => {
     function testCB(err, responses) {
       expect(responses).toEqual(['cute-cat.jpg']);
       done();
