@@ -128,7 +128,7 @@ describe('fetchCatsByOwner()', () => {
   });
 });
 
-describe('fetchCatPics()', () => {
+describe.only('fetchCatPics()', () => {
   test('invokes the callback function with no error', done => {
     function testCB(err) {
       expect(err).toBe(null);
@@ -136,7 +136,7 @@ describe('fetchCatPics()', () => {
     }
     fetchCatPics([], testCB);
   });
-  test.only('invokes the callback function with a single response', done => {
+  test('invokes the callback function with a single response', done => {
     function testCB(err, responses) {
       expect(responses).toEqual(['cute-cat.jpg']);
       done();

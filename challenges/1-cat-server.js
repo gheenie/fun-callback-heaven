@@ -39,6 +39,9 @@ function fetchCatsByOwner(owner, callback) {
 }
 
 function fetchCatPics(catNames, callback) {
+  if (catNames.length === 0) {
+    callback(null);
+  }
   const catPics = [];
   catNames.forEach(catName => {
     request(`/pics/${catName}`, (err, response) => {
@@ -48,9 +51,11 @@ function fetchCatPics(catNames, callback) {
       } else {
         catPics.push(response);
       }
+      if (catNames.length === catPics.length) {
+        callback(null, catPics);
+      }
     });
   });
-  callback(null, catPics);
 }
 
 // this function should take an array of strings (names of cat pics) and a callback function
