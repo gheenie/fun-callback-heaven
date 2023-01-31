@@ -14,7 +14,15 @@ function fetchBannerContent(callback) {
   });
 }
 
-function fetchAllOwners() {}
+function fetchAllOwners(callback) {
+  request('/owners', (err, response) => {
+    if (err) callback(err);
+
+    const responseCopy = JSON.parse( JSON.stringify(response) );
+    const updatedOwners = responseCopy.map((owner) => owner.toLowerCase());
+    callback(null, updatedOwners);
+  });
+}
 
 function fetchCatsByOwner() {}
 
