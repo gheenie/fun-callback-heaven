@@ -71,21 +71,21 @@ function fetchAllCats(callback) {
       const catsForAllOwners = [];
       let count = 0;
 
-      updatedOwners.forEach(owner =>
+      updatedOwners.forEach(owner => {
         fetchCatsByOwner(owner, (err, cats) => {
           if (err) {
             callback(err);
           } else {
             cats.forEach(cat => catsForAllOwners.push(cat));
           }
-
+          
           count++;
 
           if (updatedOwners.length === count) {
             callback(null, catsForAllOwners.sort());
           }
-        })
-      );
+        });
+      });
     }
   });
 }
