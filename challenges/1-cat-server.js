@@ -37,6 +37,7 @@ function fetchCatsByOwner(owner, callback) {
   });
 }
 
+// Northcoders' tests don't test for original array order - index and count not required.
 function fetchCatPics(catNames, callback) {
   if (catNames.length === 0) {
     callback(null);
@@ -59,15 +60,7 @@ function fetchCatPics(catNames, callback) {
   }
 }
 
-// this function should take an array of strings (names of cat pics) and a callback function
-// for each cat name in the passed array, a request should be sent to /pics/:catpic
-// each response will represent an actual catpic with the suffix .jpg
-// the callback function should be invoked with an array of responses once all the catpics have been collated(the order does not matter)
-// the server will respond with an error if the requested pic doesn't contain the word "cat". Therefore, if you receive an error, you must put placeholder.jpg in its place in the response array to act as a placeholder for the missing cat picture.
-// Note: You should make the request to receive the string containing .jpg rather than using a JS method!
-
-// Finish;
-
+// Still not tested for original array order, but tested for timeout - not using count will result in timing out.
 function fetchAllCats(callback) {
   fetchAllOwners((err, updatedOwners) => {
     if (err) {
