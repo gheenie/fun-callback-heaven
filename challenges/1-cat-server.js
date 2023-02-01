@@ -94,17 +94,15 @@ function fetchOwnersWithCats(callback) {
     if (err) {
       callback(err);
     } else {
-      const catsForAllOwners = [];
       const ownersWithCats = [];
       let count = 0;
 
-      updatedOwners.forEach(owner =>
+      updatedOwners.forEach((owner, i) =>
         fetchCatsByOwner(owner, (err, cats) => {
           if (err) {
             callback(err);
           } else {
-            ownersWithCats.push({ owner: owner, cats: cats.sort() });
-            // catsForAllOwners.push(cats);
+            ownersWithCats[i] = { owner: owner, cats: cats };
           }
 
           count++;
@@ -117,10 +115,6 @@ function fetchOwnersWithCats(callback) {
     }
   });
 }
-// this function should take a callback function as its only argument
-// this function should make use of fetchAllOwners and fetchCatsByOwner in order to build an array of objects, each with an owner and cats key.
-// the order of the objects is critical, and must be preserved - however, sorting is incredibly inefficient. Maintain the correct order without sorting
-// you get the drill by now, but you must pass the array of cats and owners to the callback function
 
 function kickLegacyServerUntilItWorks() {}
 
