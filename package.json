@@ -24,6 +24,6 @@
     "jest-extended": "^1.1.0"
   },
   "bin": {
-    "generate": "generate"
+    "generate": "generate.js"
   }
 }
