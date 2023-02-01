@@ -3,7 +3,7 @@ const fs = require('fs');
 const removeProject = require('./utils.js');
 
 //'remove the ".skip" on the describe to run the tests'
-describe.skip('project_generator', () => {
+describe('project_generator', () => {
   beforeEach(done => removeProject('my_new_project', done));
   afterAll(done => removeProject('my_new_project', done));
 
@@ -81,7 +81,7 @@ describe.skip('project_generator', () => {
       });
     });
   });
-  test('package.json file has Dev dependencies', done => {
+  test.only('package.json file has Dev dependencies', done => {
     projectGenerator('my_new_project', () => {
       fs.readFile('./my_new_project/package.json', 'utf8', (err, data) => {
         const parsedPackageJSON = JSON.parse(data);
