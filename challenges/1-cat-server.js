@@ -116,7 +116,14 @@ function fetchOwnersWithCats(callback) {
   });
 }
 
-function kickLegacyServerUntilItWorks() {}
+function kickLegacyServerUntilItWorks(callback) {
+  request('/legacy-status', (err, status) => {
+    if (err) kickLegacyServerUntilItWorks(callback);
+    else {
+      callback(null, status);
+    }
+  });
+}
 
 function buySingleOutfit() {}
 
