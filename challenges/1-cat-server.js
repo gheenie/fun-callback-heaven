@@ -125,7 +125,18 @@ function kickLegacyServerUntilItWorks(callback) {
   });
 }
 
-function buySingleOutfit() {}
+function buySingleOutfit(outfit, callback) {
+  let hasBeenCalled = false;
+
+  request('/outfits/' + outfit, (err, response) => {
+    if (!hasBeenCalled) {
+      hasBeenCalled = true;
+
+      if (err) callback(err);
+      else callback(null, response);
+    }
+  });
+}
 
 module.exports = {
   buySingleOutfit,
