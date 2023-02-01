@@ -11,11 +11,10 @@ projectGenerator(projectName, function() {});
 
 //exec(`npm install --only=dev --prefix ${projectName}`, function() {});
 
-const cliArgs = process.argv;
-const lengthCliArgs = cliArgs.length;
+const cliArgs = process.argv.slice(2);
 
-if (lengthCliArgs > 2) {
-    console.log(cliArgs[lengthCliArgs - 2], cliArgs[lengthCliArgs - 1]);
+if (cliArgs.length > 0) {
+    console.log(cliArgs[0], cliArgs[1]);
     // Add to github remote, ASYNCHRONOUSLY.
 }
 
