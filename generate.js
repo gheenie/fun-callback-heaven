@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 // Tells terminal to use node to execute this file.
 
+const rl = require("readline-sync");
 const projectGenerator = require('./challenges/2-project-generator');
 // For sending commands to CLI; async version.
 const exec = require('child_process').exec;
 
-const projectName = '/home/gk/northcoders-de/fun-callback-heaven/generatedTest';
+const answer = rl.question('What is your project name? ');
+
+const projectName = `/home/gk/northcoders-de/fun-callback-heaven/generatedTest${answer}`;
 
 projectGenerator(projectName, function() {});
 
