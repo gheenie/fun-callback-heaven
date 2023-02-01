@@ -25,5 +25,8 @@
   },
   "bin": {
     "generate": "generate.js"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
   }
 }
