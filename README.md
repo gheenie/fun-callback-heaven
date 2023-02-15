@@ -114,7 +114,7 @@ The function buySingleOutfit will need
 
 Section 2 - Project Generator
 
-First, ensure that you have the latest version of nodejs installed. This is most easilly achieved by using this nvm install script as per these instructions on the nodejs website
+First, ensure that you have the latest version of nodejs installed. This is most easilly achieved by using this nvm install script https://github.com/nvm-sh/nvm#install--update-script as per these instructions on the nodejs website https://nodejs.org/en/download/package-manager/#nvm
 
 Build a project generator. The goal is to be able to use the terminal command $generate my_new_project which should create a directory with the project name passed in your current location and fill it with the necessary files to start a basic JS project. These should include:
 
@@ -129,7 +129,7 @@ Build a project generator. The goal is to be able to use the terminal command $g
 
 In order to do this you will need to utilise the File System module available in Node. Only use the asynchronous methods - any ending in 'sync' are not allowed.
 
-A big part of problem solving is reading documentation and establishing what you will need and how to use it - here is the documentation for Node's File System module.
+A big part of problem solving is reading documentation and establishing what you will need and how to use it - here is the documentation for Node's File System module. https://nodejs.org/api/fs.html
 
 You'll also have to research how to install your program on your computer to make the generate command globally available from your terminal.
 
@@ -144,10 +144,10 @@ Section 3 - Reimplementing Generalised Asynchronous Functions
 
 Re-implement the following functions from the much-loved Async library:
 
-    Map
-    Filter
-    Some
-    Waterfall
+    Map https://caolan.github.io/async/v3/docs.html#map
+    Filter https://caolan.github.io/async/v3/docs.html#filter
+    Some https://caolan.github.io/async/v3/docs.html#some
+    Waterfall https://caolan.github.io/async/v3/docs.html#waterfall
 
 Each of these should be done with full asynchronous TDD.
 
